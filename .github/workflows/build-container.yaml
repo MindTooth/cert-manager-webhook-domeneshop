@@ -48,6 +48,7 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=semver,pattern=latest
+            type=ref,event=branch
 
       - name: Login to DockerHub
         uses: docker/login-action@v3
@@ -59,7 +60,6 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          file: ./containers/docker/pwpush/Dockerfile
           platforms: linux/amd64,linux/arm64
           provenance: false
           push: true
